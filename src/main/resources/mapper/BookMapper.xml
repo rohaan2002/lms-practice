@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rohan.lms.dao.BookDao">
+
+    <insert id="addBook" parameterType="Book" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into books(
+        title,
+        description,
+        author,
+        shelf_location,
+        genre_id,
+        borrowed,
+        add_date
+        )
+        values(
+        #{title},
+        #{description},
+        #{author},
+        #{shelfLocation},
+        #{genreId},
+        #{borrowed},
+        now()
+        )
+    </insert>
+
+    <select id ="getBookById" parameterType="Long" resultType="Book">
+        select * from books where id= #{id}
+    </select>
+
+    <update id="updateStatus" >
+        update books set borrowed=#{status} where id=#{id}
+    </update>
+
+
+</mapper>

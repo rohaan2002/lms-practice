@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rohan.lms.dao.BorrowReturnDao">
+
+    <insert id="borrowBook" parameterType="Borrower" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+<!--        val id: Long, val memberId: Long, val borrowDate: LocalDate, val returnDate: LocalDate, val bookId : Int, val overDue: Boolean-->
+
+        insert into borrower(
+        memberId,
+        borrowDate,
+        returnDate,
+        bookId,
+        overDue
+        )
+
+        values(
+        #{memberId},
+        #{borrowDate},
+        #{returnDate},
+        #{bookId},
+        #{overDue}
+        )
+    </insert>
+
+        <delete id="returnBook"  >
+                delete from borrower where memberId = #{memberId}
+        </delete>
+</mapper>
